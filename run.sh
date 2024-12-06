@@ -11,7 +11,9 @@ if [ -n "$AWS_CREDS" ]; then
 fi
 
 if [ -n "$CRON_SCHEDULE" ]; then
+  echo "CRON_SCHEDULE is: $CRON_SCHEDULE"
   exec env /opt/mantra "$CRON_SCHEDULE" /opt/sync.sh
 else
+  echo "No CRON_SCHEDULE provided, running sync directly"
   exec env /opt/sync.sh
 fi
