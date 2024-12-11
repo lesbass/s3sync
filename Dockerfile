@@ -23,5 +23,13 @@ RUN curl -o /opt/mantra -L https://github.com/pugnascotia/mantra/releases/downlo
 # Define a volume
 VOLUME /opt/data
 
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
+RUN addgroup -g ${GROUP_ID} mygroup && \
+    adduser -D -u ${USER_ID} -G mygroup myuser
+
+USER myuser
+
 # Set the default command
 CMD ["/opt/run.sh"]
